@@ -28,9 +28,19 @@
 (iswitchb-mode 1)
 (which-function-mode 1)
 (desktop-save-mode 1)
+
+(recentf-mode 1) ; keep a list of recently opened files
+
+(global-hl-line-mode 1) ; turn on highlighting current line
+(global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
 (delete-selection-mode 1)
 
 (show-paren-mode 1)
+(setq show-paren-style 'expression) ; highlight entire bracket expression
+
+(setq make-backup-files nil) ; stop creating those backup~ files
+(setq auto-save-default nil) ; stop creating those #autosave# files
+
 ;;(speedbar 1)
 
 (set-default-font "Monospace 12")
