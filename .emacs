@@ -43,9 +43,12 @@
 
 ;; query-replace  M-％
 ;; 
-;; ============== [File&Buffer] =========
+;; ============== [File & Buffer] =========
 ;; ido-find-file C-x C-f
 ;; load-file "Load the Lisp file named FILE."
+
+;; how to edit files in remote machine? 
+;; use file name like this: /user@host:filename
 
 ;; ============== [Window] =============
 ;; recenter-top-bottom  C-l "center point vertically"
