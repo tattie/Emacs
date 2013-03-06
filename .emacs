@@ -16,6 +16,10 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
 
+
+;; =========== Cusor movement ============
+;; other-window <C-x o> "Select another window in cyclic ordering of windows."
+
 ;;================= Edit =============
 ;; [Edit]
 ;; function-name key short-description
@@ -23,6 +27,9 @@
 ;; kill-region   C-w "cut/kill"
 ;; kill-ring-save  M-w "copy"
 ;; yank  C-y "paste"
+
+;; kill-word <C-delete>, M-d "Kill characters forward until encountering the end of a word."
+;; kill-whole-line <C-S-backspace> Kill current line.
 
 ;; mark-paragraph  M-h
 ;; mark-whole-buffer C-x h
