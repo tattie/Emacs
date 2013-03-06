@@ -1,3 +1,7 @@
+;; How to install emacs24 in Ubuntu:
+;; $ sudo apt-add-repository ppa:cassou/emacs
+;; $ sudo apt-get install emacs24
+
 ;;(load "~/.emacs.d/autoloads" 'install)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -11,6 +15,41 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+
+;;================= Edit =============
+;; [Edit]
+;; function-name key short-description
+;; undo  C-/ "undo"
+;; kill-region   C-w "cut/kill"
+;; kill-ring-save  M-w "copy"
+;; yank  C-y "paste"
+
+;; mark-paragraph  M-h
+;; mark-whole-buffer C-x h
+;; string-insert-rectangle "Insert STRING on each line of region-rectangle, shifting text right."
+
+;; transpose-lines C-x C-t "当前行和上一行互换"
+;; dabbrev-expand  M-/ "auto completion"
+;; 
+;; ================ [Search] ============
+;; isearch-forward C-s "Do incremental search forward."
+;; The following non-printing keys are bound in `isearch-mode-map'.
+;; C-w "search current word"
+;; C-s "to search again forward"
+;; C-y "to yank the last string of killed text."
+;; M-c "toggle case sensitivity"
+
+;; occur M-s o "Show all lines in the current buffer containing a match for REGEXP."
+
+;; query-replace  M-％
+;; 
+;; ============== [File&Buffer] =========
+;; ido-find-file C-x C-f
+;; load-file "Load the Lisp file named FILE."
+
+;; ============== [Window] =============
+;; recenter-top-bottom  C-l "center point vertically"
+
 
 (add-to-list 'auto-mode-alist '("\\.bream\\'" . java-mode))
 (add-to-list 'load-path "~/.emacs.d")
@@ -26,6 +65,8 @@
 
 ;;========== enable mode ===============
 (iswitchb-mode 1)
+(semantic-mode 1)
+(ido-mode 1)
 (which-function-mode 1)
 (desktop-save-mode 1)
 
