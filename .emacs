@@ -57,3 +57,10 @@
 ;;(global-set-key [(meta right)] ’forward-sexp)
 ;;(global-set-key [(meta g)] ’goto-line)
 
+(defun show-file-name ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (message (buffer-file-name))
+  (kill-new (file-truename buffer-file-name))
+)
+(global-set-key "\C-cz" 'show-file-name)
