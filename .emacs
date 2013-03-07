@@ -30,6 +30,7 @@
 
 ;; kill-word <C-delete>, M-d "Kill characters forward until encountering the end of a word."
 ;; kill-whole-line <C-S-backspace> Kill current line.
+;; delete-indentation <M-^> Join this line to previous and fix up whitespace at join.
 
 ;; mark-paragraph  M-h
 ;; mark-whole-buffer C-x h
@@ -49,6 +50,7 @@
 ;; occur M-s o "Show all lines in the current buffer containing a match for REGEXP."
 
 ;; query-replace  M-％
+;; in replace mode: <!> means replace all without confirm 
 ;; 
 ;; ============== [File & Buffer] =========
 ;; ido-find-file C-x C-f
@@ -59,7 +61,6 @@
 
 ;; ============== [Window] =============
 ;; recenter-top-bottom  C-l "center point vertically"
-
 
 (add-to-list 'auto-mode-alist '("\\.bream\\'" . java-mode))
 (add-to-list 'load-path "~/.emacs.d")
@@ -76,6 +77,7 @@
 ;;========== enable mode ===============
 (iswitchb-mode 1)
 (semantic-mode 1)
+(auto-complete-mode 1)
 (ido-mode 1)
 (which-function-mode 1)
 (desktop-save-mode 1)
