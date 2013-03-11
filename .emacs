@@ -88,6 +88,9 @@
 (global-linum-mode 1) ; display line numbers in margin. Emacs 23 only.
 (delete-selection-mode 1)
 
+(require 'whole-line-or-region) ;; when no selection, cut/copy whole line
+(whole-line-or-region-mode 1)
+
 (show-paren-mode 1)
 ;;(setq show-paren-style 'expression) ; highlight entire bracket expression
 
@@ -102,6 +105,8 @@
           c-basic-offset 4)
 
 (setq frame-title-format "%b")
+
+(setq semantic-load-turn-useful-things-on t)
 
 ;;(require ‘c++-mode)
 ;;(define-key c-mode-base-map (kbd "RET") 'newline-and-indent)
