@@ -8,15 +8,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 143 :width normal :foundry "outline" :family "Courier New")))))
 
-
+(server-start)
 
 ;; =========== Cusor movement ============
 ;; other-window <C-x o> "Select another window in cyclic ordering of windows."
@@ -107,19 +107,19 @@
 (put 'downcase-region 'disabled nil)
 
 
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+;; (ac-config-default)
 
 ;; helm (anything) https://github.com/emacs-helm/helm.git
-(add-to-list 'load-path "~/code/github/helm")
-(require 'helm-config)
+;; (add-to-list 'load-path "~/code/github/helm")
+;; (require 'helm-config)
 ;;(helm-mode 1)
 
 ;;========== enable mode ===============
 ;;(iswitchb-mode 1)
 (semantic-mode 1)
-(auto-complete-mode 1)
+;; (auto-complete-mode 1)
 (ido-mode 1)
 (which-function-mode 1)
 (desktop-save-mode 1)
@@ -141,9 +141,9 @@
 (setq make-backup-files nil) ;; stop creating those backup~ files
 (setq auto-save-default nil) ;; stop creating those #autosave# files
 
-;;(speedbar 1)
+;; (speedbar 1)
 
-(set-default-font "Monospace 12")
+;; (set-default-font "Monospace 12")
 
 (setq c-default-style "linux"
           c-basic-offset 4)
