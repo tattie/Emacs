@@ -21,6 +21,13 @@
 ;; =========== Cusor movement ============
 ;; other-window <C-x o> "Select another window in cyclic ordering of windows."
 
+;; forward-sexp <C-M-right>, C-M-f "Move forward across one balanced expression (sexp)."
+;; C-M-b
+
+;; Moving in the Parenthesis Structure
+;; C-M-u/d Move up/down in parenthesis structure (backward-up-list).  
+;; C-M-n/p Move forward/backward over a parenthetical group (forward-list).
+
 ;; ============ Help =============
 ;; describe-mode <F1 m> "In any mode, see its inline documentation."
 
@@ -78,7 +85,10 @@
 ;; ============== [Window] =============
 ;; recenter-top-bottom  C-l "center point vertically"
 
-;; =============shortcut key ===========
+;; ============= Misc ================
+;; count-words-region M-= "Count the number of words in the region"
+
+;; ============= customized shortcut key ===========
 
 (global-set-key (kbd "<C-f4>") 'kill-buffer-and-window)
 ;; describe-key
@@ -112,8 +122,8 @@
 (ac-config-default)
 
 ;; helm (anything) https://github.com/emacs-helm/helm.git
-(add-to-list 'load-path "~/code/github/helm")
-(require 'helm-config)
+;; (add-to-list 'load-path "~/code/github/helm")
+;; (require 'helm-config)
 ;;(helm-mode 1)
 
 ;;========== enable mode ===============
@@ -124,9 +134,10 @@
 (which-function-mode 1)
 (desktop-save-mode 1)
 
+(global-auto-revert-mode 1)
 (recentf-mode 1) ;; keep a list of recently opened files
 
-(whitespace-mode 1) ;; Toggle whitespace visualization
+;; (whitespace-mode 1) ;; Toggle whitespace visualization
 
 ;;(global-hl-line-mode 1) ;; turn on highlighting current line
 (global-linum-mode 1) ;; display line numbers in margin. Emacs 23 only.
@@ -177,5 +188,13 @@
 ;;     ("8g" "Google")
 ;;     ))
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
+
+(when window-system
+  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+  (tooltip-mode -1)
+  (mouse-wheel-mode t)
+  (blink-cursor-mode -1))
