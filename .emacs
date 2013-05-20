@@ -8,7 +8,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(blink-cursor-mode nil)
+ '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
+ '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -17,6 +19,9 @@
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Droid Sans Mono")))))
 
 
+(setq scroll-conservatively 6)
+(setq scroll-step 6)
+(setq scroll-preserve-screen-position t)
 
 ;; =========== Cusor movement ============
 ;; other-window <C-x o> "Select another window in cyclic ordering of windows."
@@ -146,6 +151,8 @@
 (require 'whole-line-or-region) ;; when no selection, cut/copy whole line
 (whole-line-or-region-mode 1)
 
+;; (require 'sr-speedbar)
+
 (show-paren-mode 1)
 ;;(setq show-paren-style 'expression) ;; highlight entire bracket expression
 
@@ -198,3 +205,4 @@
   (tooltip-mode -1)
   (mouse-wheel-mode t)
   (blink-cursor-mode -1))
+
