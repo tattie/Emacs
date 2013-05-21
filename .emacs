@@ -8,6 +8,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -17,9 +19,19 @@
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 143 :width normal :foundry "outline" :family "Courier New")))))
 
 (server-start)
+(setq scroll-conservatively 6)
+(setq scroll-step 6)
+(setq scroll-preserve-screen-position t)
 
 ;; =========== Cusor movement ============
 ;; other-window <C-x o> "Select another window in cyclic ordering of windows."
+
+;; forward-sexp <C-M-right>, C-M-f "Move forward across one balanced expression (sexp)."
+;; C-M-b
+
+;; Moving in the Parenthesis Structure
+;; C-M-u/d Move up/down in parenthesis structure (backward-up-list).  
+;; C-M-n/p Move forward/backward over a parenthetical group (forward-list).
 
 ;; ============ Help =============
 ;; describe-mode <F1 m> "In any mode, see its inline documentation."
@@ -41,7 +53,7 @@
 ;; string-insert-rectangle "Insert STRING on each line of region-rectangle, shifting text right."
 ;; string-rectangle
 
-;; transpose-lines C-x C-t "当前行和上一行互换"
+;; transpose-lines C-x C-t "当前行和上一行互�
 ;; dabbrev-expand  M-/ "auto completion"
 ;; comment-dwim M-; "comment/uncomment selected region"
 ;; quoted-insert C-q "Read next input character and insert it."
@@ -64,7 +76,7 @@
 
 ;; occur M-s o "Show all lines in the current buffer containing a match for REGEXP."
 
-;; query-replace  M-％
+;; query-replace  M-�
 ;; in replace mode: <!> means replace all without confirm
 ;;
 ;; ============== [File & Buffer] =========
@@ -78,7 +90,10 @@
 ;; ============== [Window] =============
 ;; recenter-top-bottom  C-l "center point vertically"
 
-;; =============shortcut key ===========
+;; ============= Misc ================
+;; count-words-region M-= "Count the number of words in the region"
+
+;; ============= customized shortcut key ===========
 
 (global-set-key (kbd "<C-f4>") 'kill-buffer-and-window)
 ;; describe-key
@@ -124,9 +139,10 @@
 (which-function-mode 1)
 (desktop-save-mode 1)
 
+(global-auto-revert-mode 1)
 (recentf-mode 1) ;; keep a list of recently opened files
 
-(whitespace-mode 1) ;; Toggle whitespace visualization
+;; (whitespace-mode 1) ;; Toggle whitespace visualization
 
 ;;(global-hl-line-mode 1) ;; turn on highlighting current line
 (global-linum-mode 1) ;; display line numbers in margin. Emacs 23 only.
@@ -134,6 +150,8 @@
 
 (require 'whole-line-or-region) ;; when no selection, cut/copy whole line
 (whole-line-or-region-mode 1)
+
+;; (require 'sr-speedbar)
 
 (show-paren-mode 1)
 ;;(setq show-paren-style 'expression) ;; highlight entire bracket expression
@@ -177,5 +195,17 @@
 ;;     ("8g" "Google")
 ;;     ))
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
+
+(when window-system
+  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+  (tooltip-mode -1)
+  (mouse-wheel-mode t)
+  (blink-cursor-mode -1))
+
+
+  
+  (show-paren-mode t)
