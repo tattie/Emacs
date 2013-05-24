@@ -114,6 +114,8 @@
 (global-set-key (kbd "M-u") 'backward-word)
 (global-set-key (kbd "M-o") 'forward-word)
 
+(global-set-key [S-f3] 'find-grep)
+
 (add-to-list 'auto-mode-alist '("\\.bream\\'" . java-mode))
 (add-to-list 'load-path "~/.emacs.d")
 ;;(require 'install)
@@ -121,6 +123,16 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+(setq load-path (cons "/usr/share/emacs/site-lisp/global" load-path))
+(autoload 'gtags-mode "gtags" "" t)
+(add-hook 'c++-mode-hook 
+   '(lambda () 
+      (gtags-mode t)
+))
+
+;; Start speedbar automatically if we're using a window system like X, etc
+;; (when window-system 
+;;   (speedbar t))
 
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
