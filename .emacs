@@ -22,9 +22,12 @@
 (setq scroll-conservatively 6)
 (setq scroll-step 6)
 (setq scroll-preserve-screen-position t)
+(setq scroll-margin 3)
 
 ;; =========== Cusor movement ============
 ;; other-window <C-x o> "Select another window in cyclic ordering of windows."
+;; move-to-window-line-top-bottom M-r "Position point relative to window."
+
 
 ;; forward-sexp <C-M-right>, C-M-f "Move forward across one balanced expression (sexp)."
 ;; C-M-b
@@ -89,13 +92,14 @@
 
 ;; ============== [Window] =============
 ;; recenter-top-bottom  C-l "center point vertically"
+;; balance-windows C-x + "Balance the sizes of windows of WINDOW-OR-FRAME."
 
 ;; ============= Misc ================
 ;; count-words-region M-= "Count the number of words in the region"
 
 ;; ============= customized shortcut key ===========
 
-(global-set-key (kbd "<C-f4>") 'kill-buffer-and-window)
+(global-set-key (kbd "<C-f4>") 'kill-this-buffer)
 ;; describe-key
 
 ; define some keys only when the major mode html-mode is active
@@ -123,12 +127,21 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; ========= global & gtags ==========
 (setq load-path (cons "/usr/share/emacs/site-lisp/global" load-path))
 (autoload 'gtags-mode "gtags" "" t)
 (add-hook 'c++-mode-hook 
    '(lambda () 
       (gtags-mode t)
 ))
+(add-hook 'gtags-mode-hook
+ (lambda ()
+ (local-set-key (kbd "M-,") 'gtags-find-symbol)
+ (local-set-key (kbd "M-?") 'gtags-find-rtag)
+ )
+)
+
+
 
 ;; Start speedbar automatically if we're using a window system like X, etc
 ;; (when window-system 
