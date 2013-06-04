@@ -77,6 +77,8 @@
 ;; C-y "to yank the last string of killed text."
 ;; M-c "toggle case sensitivity"
 
+;; isearch-forward-regexp C-M-s "Do incremental search forward for regular expression."
+
 ;; occur M-s o "Show all lines in the current buffer containing a match for REGEXP."
 
 ;; query-replace  M-％
@@ -120,7 +122,11 @@
 
 (global-set-key [S-f3] 'find-grep)
 
+(global-set-key (kbd "C-b") 'ido-switch-buffer)
+
 (add-to-list 'auto-mode-alist '("\\.bream\\'" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.ot\\'" . c++-mode))
+
 (add-to-list 'load-path "~/.emacs.d")
 ;;(require 'install)
 ;;(load "auto-complete-1.3.1\\auto-complete.el")
@@ -140,7 +146,6 @@
  (local-set-key (kbd "M-?") 'gtags-find-rtag)
  )
 )
-
 
 
 ;; Start speedbar automatically if we're using a window system like X, etc
