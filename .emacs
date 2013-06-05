@@ -163,6 +163,15 @@
   (mouse-wheel-mode t)
   (blink-cursor-mode -1))
 
+;; =========== shell ==============
+(add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
+;; (comint-previous-prompt N) C-c C-p/n Move to end of Nth previous prompt in the buffer.
+;; run one command at a time M-!
+;; (shell-command-on-region START END COMMAND &optional OUTPUT-BUFFER REPLACE ERROR-BUFFER DISPLAY-ERROR-BUFFER) M-|
+;; C-u C-! put the output in the current buffer
+
+
+;; ============ dired ===========
 ;; open file by external program
 (defun dired-open-file ()
   "In dired, open the file named on this line."
