@@ -24,80 +24,6 @@
 (setq scroll-preserve-screen-position t)
 (setq scroll-margin 3)
 
-;; =========== Cusor movement ============
-;; other-window <C-x o> "Select another window in cyclic ordering of windows."
-;; move-to-window-line-top-bottom M-r "Position point relative to window."
-
-
-;; forward-sexp <C-M-right>, C-M-f "Move forward across one balanced expression (sexp)."
-;; C-M-b
-
-;; Moving in the Parenthesis Structure
-;; C-M-u/d Move up/down in parenthesis structure (backward-up-list).  
-;; C-M-n/p Move forward/backward over a parenthetical group (forward-list).
-
-;; ============ Help =============
-;; describe-mode <F1 m> "In any mode, see its inline documentation."
-
-;;================= Edit =============
-;; [Edit]
-;; function-name key short-description
-;; undo  C-/ "undo"
-;; kill-region   C-w "cut/kill"
-;; kill-ring-save  M-w "copy"
-;; yank  C-y "paste"
-
-;; kill-word <C-delete>, M-d "Kill characters forward until encountering the end of a word."
-;; kill-whole-line <C-S-backspace> Kill current line.
-;; delete-indentation <M-^> Join this line to previous and fix up whitespace at join.
-
-;; mark-paragraph  M-h
-;; mark-whole-buffer C-x h
-;; string-insert-rectangle "Insert STRING on each line of region-rectangle, shifting text right."
-;; string-rectangle
-
-;; transpose-lines C-x C-t "当前行和上一行互换"
-;; dabbrev-expand  M-/ "auto completion"
-;; comment-dwim M-; "comment/uncomment selected region"
-;; quoted-insert C-q "Read next input character and insert it."
-
-;; list-matching-lines
-;; delete-matching-lines
-;; delete-non-matching-lines
-
-;; highlight-phrase, highlight-regexp, highlight-lines-matching-regexp
-
-;; delete-trailing-whitespace "delete trailing white spaces for the whole buffer."
-
-;; ================ [Search] ============
-;; isearch-forward C-s "Do incremental search forward."
-;; The following non-printing keys are bound in `isearch-mode-map'.
-;; C-w "search current word"
-;; C-s "to search again forward"
-;; C-y "to yank the last string of killed text."
-;; M-c "toggle case sensitivity"
-
-;; isearch-forward-regexp C-M-s "Do incremental search forward for regular expression."
-
-;; occur M-s o "Show all lines in the current buffer containing a match for REGEXP."
-
-;; query-replace  M-％
-;; in replace mode: <!> means replace all without confirm
-;;
-;; ============== [File & Buffer] =========
-;; ido-find-file C-x C-f
-;; load-file "Load the Lisp file named FILE."
-;; find-name-dired "Search DIR recursively for files matching the globbing pattern PATTERN, and run dired on those files."
-
-;; how to edit files in remote machine?
-;; use file name like this: /user@host:filename
-
-;; ============== [Window] =============
-;; recenter-top-bottom  C-l "center point vertically"
-;; balance-windows C-x + "Balance the sizes of windows of WINDOW-OR-FRAME."
-
-;; ============= Misc ================
-;; count-words-region M-= "Count the number of words in the region"
 
 ;; ============= customized shortcut key ===========
 
@@ -116,7 +42,6 @@
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-l") 'forward-char)
-
 (global-set-key (kbd "M-u") 'backward-word)
 (global-set-key (kbd "M-o") 'forward-word)
 
@@ -128,6 +53,8 @@
 (add-to-list 'auto-mode-alist '("\\.ot\\'" . c++-mode))
 
 (add-to-list 'load-path "~/.emacs.d")
+(load "elpa/dired+-20130206.1702/dired+.el")
+
 ;;(require 'install)
 ;;(load "auto-complete-1.3.1\\auto-complete.el")
 (put 'upcase-region 'disabled nil)
@@ -236,3 +163,96 @@
   (mouse-wheel-mode t)
   (blink-cursor-mode -1))
 
+;; open file by external program
+(defun dired-open-file ()
+  "In dired, open the file named on this line."
+  (interactive)
+  (let* ((file (dired-get-filename nil t)))
+    (message "Opening %s..." file)
+    (call-process "gnome-open" nil 0 nil file)
+    (message "Opening %s done" file)))
+
+(define-key dired-mode-map (kbd "C-<return>") 'dired-open-file)
+
+;; add new package server melpa
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  )
+
+
+;; =========== Cusor movement ============
+;; other-window <C-x o> "Select another window in cyclic ordering of windows."
+;; move-to-window-line-top-bottom M-r "Position point relative to window."
+
+
+;; forward-sexp <C-M-right>, C-M-f "Move forward across one balanced expression (sexp)."
+;; C-M-b
+
+;; Moving in the Parenthesis Structure
+;; C-M-u/d Move up/down in parenthesis structure (backward-up-list).  
+;; C-M-n/p Move forward/backward over a parenthetical group (forward-list).
+
+;; ============ Help =============
+;; describe-mode <F1 m> "In any mode, see its inline documentation."
+
+;;================= Edit =============
+;; [Edit]
+;; function-name key short-description
+;; undo  C-/ "undo"
+;; kill-region   C-w "cut/kill"
+;; kill-ring-save  M-w "copy"
+;; yank  C-y "paste"
+
+;; kill-word <C-delete>, M-d "Kill characters forward until encountering the end of a word."
+;; kill-whole-line <C-S-backspace> Kill current line.
+;; delete-indentation <M-^> Join this line to previous and fix up whitespace at join.
+
+;; mark-paragraph  M-h
+;; mark-whole-buffer C-x h
+;; string-insert-rectangle "Insert STRING on each line of region-rectangle, shifting text right."
+;; string-rectangle
+
+;; transpose-lines C-x C-t "当前行和上一行互换"
+;; dabbrev-expand  M-/ "auto completion"
+;; comment-dwim M-; "comment/uncomment selected region"
+;; quoted-insert C-q "Read next input character and insert it."
+
+;; list-matching-lines
+;; delete-matching-lines
+;; delete-non-matching-lines
+
+;; highlight-phrase, highlight-regexp, highlight-lines-matching-regexp
+
+;; delete-trailing-whitespace "delete trailing white spaces for the whole buffer."
+
+;; ================ [Search] ============
+;; isearch-forward C-s "Do incremental search forward."
+;; The following non-printing keys are bound in `isearch-mode-map'.
+;; C-w "search current word"
+;; C-s "to search again forward"
+;; C-y "to yank the last string of killed text."
+;; M-c "toggle case sensitivity"
+
+;; isearch-forward-regexp C-M-s "Do incremental search forward for regular expression."
+
+;; occur M-s o "Show all lines in the current buffer containing a match for REGEXP."
+
+;; query-replace  M-％
+;; in replace mode: <!> means replace all without confirm
+;;
+;; ============== [File & Buffer] =========
+;; ido-find-file C-x C-f
+;; load-file "Load the Lisp file named FILE."
+;; find-name-dired "Search DIR recursively for files matching the globbing pattern PATTERN, and run dired on those files."
+
+;; how to edit files in remote machine?
+;; use file name like this: /user@host:filename
+
+;; ============== [Window] =============
+;; recenter-top-bottom  C-l "center point vertically"
+;; balance-windows C-x + "Balance the sizes of windows of WINDOW-OR-FRAME."
+
+;; ============= Misc ================
+;; count-words-region M-= "Count the number of words in the region"
