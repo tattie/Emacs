@@ -44,16 +44,30 @@
 (global-set-key (kbd "M-l") 'forward-char)
 (global-set-key (kbd "M-u") 'backward-word)
 (global-set-key (kbd "M-o") 'forward-word)
+(global-set-key (kbd "M-<up>") 'windmove-up)
+(global-set-key (kbd "M-<down>") 'windmove-down)
+(global-set-key (kbd "M-<left>") 'windmove-left)
+(global-set-key (kbd "M-<right>") 'windmove-right)
 
 (global-set-key [S-f3] 'find-grep)
-
 (global-set-key (kbd "C-b") 'ido-switch-buffer)
+(global-set-key [f7] 'dired-other-window)
+(global-set-key [f6] 'shell)
+(global-set-key [f8] 'man)
 
 (add-to-list 'auto-mode-alist '("\\.bream\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.ot\\'" . c++-mode))
 
 (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/elpa")
+(add-to-list 'load-path "~/.emacs.d/elpa/dired-details-20130328.1119")
+
+(require 'dired-details)
+(dired-details-install)
+
 (load "elpa/dired+-20130206.1702/dired+.el")
+(load "elpa/dired-details+-20121228.2028/dired-details+.el")
+(load "elpa/dired-details+-20121228.2028/dired-details+.el")
 
 ;;(require 'install)
 ;;(load "auto-complete-1.3.1\\auto-complete.el")
@@ -82,6 +96,8 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
+
+(require 'dired-details+)
 
 ;; helm (anything) https://github.com/emacs-helm/helm.git
 ;; (add-to-list 'load-path "~/code/github/helm")
@@ -166,8 +182,9 @@
 ;; =========== shell ==============
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 ;; (comint-previous-prompt N) C-c C-p/n Move to end of Nth previous prompt in the buffer.
-;; run one command at a time M-!
-;; (shell-command-on-region START END COMMAND &optional OUTPUT-BUFFER REPLACE ERROR-BUFFER DISPLAY-ERROR-BUFFER) M-|
+;; M-! run one command at a time.
+;; M-& (`async-shell-command') run shell command asyn.
+;; M-| (`shell-command-on-region') START END COMMAND &optional OUTPUT-BUFFER REPLACE ERROR-BUFFER DISPLAY-ERROR-BUFFER)
 ;; C-u C-! put the output in the current buffer
 
 
@@ -181,8 +198,21 @@
     (call-process "gnome-open" nil 0 nil file)
     (message "Opening %s done" file)))
 
-(define-key dired-mode-map (kbd "C-<return>") 'dired-open-file)
+(setq dired-listing-switches "-lBhXgG")
 
+(define-key dired-mode-map (kbd "C-<return>") 'dired-open-file)
+(define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
+
+;; v view file; <RET>/e/f open file; o open in other window
+;; s "switch between sort by name/date"
+;; g "refresh"
+;; ! run shell command on marked files
+;; & same with !, but asyn
+;; m mark file; 3m mark next three files; -3m mark previous three files
+;; * / mark all dirs; * s mark all; C-/ undo
+;; * % mark by regular expression on file names; % g mark by RE on file content
+
+;; ============= list package ============
 ;; add new package server melpa
 (when (>= emacs-major-version 24)
   (require 'package)
